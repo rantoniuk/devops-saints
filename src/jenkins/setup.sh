@@ -23,9 +23,10 @@ docker run --name ${NAME} \
 # echo "Installing plugins"
 # docker exec -it ${NAME} /tmp/scripts/install_plugins.sh
 # Moved to config.tar
+sleep 5
 
 echo "Preconfigure instance..."
-docker exec -it ${NAME} tar -C /var/jenkins_home -xvf /tmp/scripts/config.tar
+docker exec ${NAME} tar -C /var/jenkins_home -xf /tmp/scripts/config.tar
 
 echo "Restarting Jenkins"
 docker restart ${NAME}

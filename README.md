@@ -27,10 +27,10 @@ This should:
 * Provision the machine according to Ansible spec
 * Start Jenkins instance
 
-Note:
+*Note*
 
 * in case private_network in Vagrantfile is used, you can access services with the designated IP
-* otherwise the ports 7070 and 7080 should be mapped to 8080/tcp (Jenkins) and 80/tcp (Nginx) respectively.
+* otherwise the ports 7070 and 7080 should be mapped to 8080/tcp (Jenkins) and 80/tcp (Nginx) respectively
 
 After the machine is provisioned via Vagrant and Ansible, and port forwarding (or private network works), go in the browser to:
 
