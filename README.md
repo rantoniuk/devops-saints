@@ -17,11 +17,13 @@ git clone https://github.com/warden/devops-saints
 * start up ubuntu docker host
 
 ```
+cd devops-saints
 vagrant up
 ```
 
 This should:
 
+* Take a while... ;-)
 * Bring up Ubuntu box
 * Download and install Ansible
 * Provision the machine according to Ansible spec
