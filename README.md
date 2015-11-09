@@ -11,7 +11,7 @@
 * Clone GIT repository
 
 ```
-git clone https://github.com/warden/devops-saints```
+git clone https://github.com/warden/devops-saints
 ```
 
 * start up ubuntu docker host
@@ -34,12 +34,12 @@ This should:
 
 After the machine is provisioned via Vagrant and Ansible, and port forwarding (or private network works), go in the browser to:
 
-http://localhost:7070/view/CD or http://192.168.200.200:8080/view/CD
+(http://localhost:7070/view/CD)[http://localhost:7070/view/CD] or (http://192.168.200.200:8080/view/CD)[http://192.168.200.200:8080/view/CD]
 
 and start a new Build. This will trigger Go compiler download and should build the project and start two Docker containers in the deployment step.
-Then you should be able to access the app at:
+After the build completes, the front nginx should be available here:
 
-http://localhost:7080 or http://192.168.200.200
+(http://localhost:7080)[http://localhost:7080] or (http://192.168.200.200)[http://192.168.200.200]
 
 Refreshing the page a number of times should show round robin behavior.
 
