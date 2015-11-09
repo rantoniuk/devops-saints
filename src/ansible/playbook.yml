@@ -1,0 +1,8 @@
+---
+- name: Install Docker and Nginx
+  hosts: all
+  sudo: yes
+  roles:
+    - angstwad.docker_ubuntu
+    - nginx
+    - jenkins

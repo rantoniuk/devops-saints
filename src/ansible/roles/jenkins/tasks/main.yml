@@ -1,0 +1,13 @@
+---
+- name: Install Jenkins
+  command: setup.sh
+  args:
+    chdir: /files/jenkins/
+    creates: /tmp/jenkins_home/config.xml
+
+- name: Ensure Jenkins running
+  docker:
+    name: jenkins_master
+    image: quiddia/docker-jenkins-master:1.625.1_1.8.3
+    expose:
+      - 8080
