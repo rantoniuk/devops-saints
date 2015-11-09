@@ -4,6 +4,7 @@
 
 * VirtualBox (current stable)
 * Vagrant (tested with 1.7.4)
+* Tested on Windows 10
 
 ## Starting up
 
@@ -55,7 +56,27 @@ To test the entire workflow, Jenkins must be operational. A pre-defined config f
 
 
 
+## Repo Structure
 
+```
+.
+├── bootstrap.sh                                <---- Bootstrap for provisioning Vagrant box for Ansible
+├── README.md
+├── src
+│   ├── ansible
+│   │   ├── hosts
+│   │   ├── playbook.yml                        <---- Ansible playbook
+│   │   └── roles                               <---- Ansible role definitions
+│   │       ├── jenkins
+│   │       └── nginx
+│   └── jenkins
+│       ├── jobs                                <---- DSL Jobs
+│       ├── scripts
+│       │   ├── config.tar                      <---- Jenkins Preconfiguration
+│       │   └── install_plugins.sh
+│       └── setup.sh                            <---- Jenkins bootstrap script
+└── Vagrantfile                                 <---- Vagrant box configuration
+```
 
 
 ## Known Issues
