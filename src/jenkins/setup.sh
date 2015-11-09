@@ -20,8 +20,10 @@ docker run --name ${NAME} \
 -v /var/run/docker.sock:/var/run/docker.sock \
 -d -p 40000:40000 -p 8080:8080 ${IMAGE}
 
-echo "Installing plugins"
-docker exec -it ${NAME} /tmp/scripts/install_plugins.sh
+# echo "Installing plugins"
+# docker exec -it ${NAME} /tmp/scripts/install_plugins.sh
+# Moved to config.tar
+
 echo "Preconfigure instance..."
 docker exec -it ${NAME} tar -C /var/jenkins_home -xvf /tmp/scripts/config.tar
 

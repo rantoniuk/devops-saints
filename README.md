@@ -27,15 +27,21 @@ This should:
 * Provision the machine according to Ansible spec
 * Start Jenkins instance
 
-Next steps:
+Note:
 
-* in case private_network in Vagrantfile is uncommented - you can access services with the designated IP
-* otherwise, see below for mapping ports manually
+* in case private_network in Vagrantfile is used, you can access services with the designated IP
+* otherwise the ports 7070 and 7080 should be mapped to 8080/tcp (Jenkins) and 80/tcp (Nginx) respectively.
 
-* Mapping ports manually - for Windows 10 *
+After the machine is provisioned via Vagrant and Ansible, and port forwarding (or private network works), go in the browser to:
 
-* Map Virtualbox port 7080 to port 80 on guest - this is the application
-* Map Virtualbox port 7070 to port 8080 on guest - this is Jenkins instance
+http://localhost:7070/view/CD or http://192.168.200.200:8080/view/CD
+
+and start a new Build. This will trigger Go compiler download and should build the project and start two Docker containers in the deployment step.
+Then you should be able to access the app at:
+
+http://localhost:7080 or http://192.168.200.200
+
+Refreshing the page a number of times should show round robin behavior.
 
 ## Architecture
 
@@ -51,10 +57,7 @@ Next steps:
 In short:
 The Ubuntu box serves as both, Jenkins Master server, Nginx Server that is the front Load Balancer and the Docker Host that is running the application itself.
 To make it more interesting, Jenkins itself is dockerized. Jenkins is using customised images created by me and available [here](https://hub.docker.com/r/quiddia/docker-jenkins-master/).
-
-To test the entire workflow, Jenkins must be operational. A pre-defined config file is also part of this installation to shorten the list of manual steps.
-
-
+To test the entire workflow, Jenkins must be operational. A pre-defined config file is also part of this installation to eliminate manual steps.
 
 ## Repo Structure
 
@@ -72,12 +75,19 @@ To test the entire workflow, Jenkins must be operational. A pre-defined config f
 │   └── jenkins
 │       ├── jobs                                <---- DSL Jobs
 │       ├── scripts
-│       │   ├── config.tar                      <---- Jenkins Preconfiguration
+│       │   ├── config.tar                      <---- Jenkins Preconfiguration, including plugins, views and pre-configured jobs
 │       │   └── install_plugins.sh
 │       └── setup.sh                            <---- Jenkins bootstrap script
 └── Vagrantfile                                 <---- Vagrant box configuration
 ```
+## Technologies used
 
+* Jenkins
+* Docker
+* Ansible
+* Vagrant
+* Go
+* Nginx
 
 ## Known Issues
 

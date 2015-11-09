@@ -1,9 +1,6 @@
 ---
 - name: Install Jenkins
-  command: setup.sh
-  args:
-    chdir: /files/jenkins/
-    creates: /tmp/jenkins_home/config.xml
+  command: chdir=/files/jenkins/ creates=/tmp/jenkins_home/config.xml ./setup.sh
 
 - name: Ensure Jenkins running
   docker:
@@ -11,3 +8,9 @@
     image: quiddia/docker-jenkins-master:1.625.1_1.8.3
     expose:
       - 8080
+
+- name: run ansible to ensure containers running
+  cron:
+    name: run Ansible
+    minute: "*/1"
+    job: ansible-playbook /files/ansible/playbook.yml -i /tmp/hosts  -c local

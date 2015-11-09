@@ -2,6 +2,11 @@
 - name: Install nginx
   apt: name=nginx state=present
 
+- name: Ensure Nginx running
+  service:
+    name: nginx
+    state: running
+
 - name: Copy nginx configuration
   template: src=default.conf dest=/etc/nginx/conf.d/default.conf
   notify: restart nginx
